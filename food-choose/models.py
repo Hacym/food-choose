@@ -5,8 +5,8 @@ import requests
 from peewee import *
 from config import get_config
 
-db = SqliteDatabase(os.path.expanduser('~/food-choose.db'))
 config = get_config()
+db = SqliteDatabase(os.path.expanduser(config.get('db', 'location')))
 
 class Establishment(Model):
     establishment_id = IntegerField()
