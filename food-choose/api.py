@@ -23,7 +23,18 @@ def connect_to_db():
 @get('/restaurant')
 def restaurant_collection():
     """ Gives you a list of all possible restaurants. """
-    return "test"
+
+    restaurants = []
+
+    for restaurant in Restaurant.select():
+        restaurants.append(
+                {
+                    "restaurant_id": restaurant.restaurant_id,
+                    "name": restaurant.name,
+                    "last_suggested": restaurant.last_suggest
+                }
+            )
+    return {"data": restaurants}
 
 @get('/restaurant/random')
 def restaurant_random():
